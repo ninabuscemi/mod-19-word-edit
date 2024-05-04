@@ -1,1 +1,1 @@
-# mod-19-word-edit
+# Module 19 Word Edit Challenge
