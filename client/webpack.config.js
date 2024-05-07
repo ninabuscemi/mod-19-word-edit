@@ -4,11 +4,7 @@ const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
 
 // TODO: Add and configure workbox plugins for a service worker and manifest file.
-
-
-
 // TODO: Add CSS loaders and babel to webpack.
-
 
 module.exports = () => {
   return {
@@ -23,37 +19,39 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html',
-        filename: './index.html',
-        chunks: ['main'],
+        template: './index.html',
+        title: 'Contact Cards'
       }),
-      
-    new InjectManifest({
-      swSrc: './src-sw.js',
-      swDest: 'src-sw.js',
-    }),
+     
+      // Injects our custom service worker
+      new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js',
+      }),
 
-    new WebpackPwaManifest({
-      name: 'Word Editor',
-      short_name: 'WE',
-      description: 'Offline Word Editor!',
-      background_color: '#ffffff',
-      theme_color: '#ffffff',
-      start_url: '/',
-      fingerprints: false,
-      inject: false,
-      publicPath: './',
-      icons: [
-        {
-          src: path.resolve('src/images/logo.png'),
-          sizes: [96, 128, 192, 256, 384, 512],
-          destination: path.join('assets', 'icons'),
-        }
-      ]
-    })
+      // Creates a manifest.json file.
+      new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
+        name: 'Text Editor',
+        short_name: 'TE',
+        description: 'Another Text Editor',
+        background_color: '#225ca3',
+        theme_color: '#225ca3',
+        start_url: './',
+        publicPath: './',
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
+          },
+        ],
+      }),
 
     ],
-   module: {
+
+    module: {
       rules: [
         {
           test: /\.css$/i,
