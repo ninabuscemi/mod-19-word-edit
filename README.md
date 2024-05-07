@@ -1,4 +1,4 @@
-# Module 19 Word Edit Challenge
+# Word Editor
 
 ![License Badge](https://badgen.net/static/license/MIT/blue)
 
